@@ -31,11 +31,16 @@ export default {
         <div class="text-center text-[60px] lg:text-[85px] xl:text-[108px] font-playfair">
           <span class="text-wt">FINEV</span><span class="text-ylv">A</span>
         </div>
-        <span class="text-wt text-center lg:w-[30rem]">
-          Add a little bit of body texAdd a little bit of body textAdd a little bit of
-          body textAdd a little bit of body textAdd a little bit of body textAdd a little
-          bit of body textAdd a little bit of body textAdd a
-        </span>
+        <span class="text-justify indent-">
+            <br>
+          <p text-justify>
+         <b>FINEVA</b> is an innovative solution that revolutionizes traffic violations and license management. 
+          It simplifies the process of paying fines and retrieving licenses, saving drivers time and effort.
+          <b>FINEVA</b> provides a convenient online platform for secure fine settlement, eliminating the need for 
+           physical visits to police stations. It also offers police officers instant access to license verification, 
+           allowing them to check driver's license validity using their License Number. This simplifies the burden of 
+           traditional procedures, promoting a seamless and user-friendly experience for both drivers and police officers.
+          </p>  </span>
       </div>
       <br /><br />
       <div

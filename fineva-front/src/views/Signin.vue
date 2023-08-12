@@ -36,7 +36,7 @@ export default {
 };
 </script>
 <template>
-  <div class="bg-mblue h-[120vh] relative">
+  <div class="min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')]">
     <div class="lg:grid lg:grid-cols-2 mx-4 relative top-[100px]">
       <!--FINVA Name-->
       <div class="">
@@ -47,7 +47,17 @@ export default {
           <span class="text-[30px] font-sans text-ylv">{{ userState }}</span>
         </div>
         <!--vector image-->
-        <div class="lg:">
+        <div class="text-center text-[13px] lg:text-[13px] xl:text-[13px] ml-10">
+          <span class="text-justify">
+            <br>
+          <p text-justify>
+         <b>FINEVA</b> is an innovative solution that revolutionizes traffic violations and license management. 
+          It simplifies the process of paying fines and retrieving licenses, saving drivers time and effort.
+          <b>FINEVA</b> provides a convenient online platform for secure fine settlement, eliminating the need for 
+           physical visits to police stations. It also offers police officers instant access to license verification, 
+           allowing them to check driver's license validity using their License Number. This simplifies the burden of 
+           traditional procedures, promoting a seamless and user-friendly experience for both drivers and police officers.
+          </p>  </span>
             
         </div>
         <br>
