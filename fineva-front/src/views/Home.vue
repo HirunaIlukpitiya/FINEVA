@@ -7,35 +7,45 @@ export default {
       document.getElementById("driver").src = "../../src/assets/image/d2.png";
       var user_state = "DRIVER";
       store.dispatch("setUserState", user_state);
-      this.$router.push('signIn');
+      this.$router.push("signIn");
     },
     togglePolice() {
       document.getElementById("police").src = "../../src/assets/image/p2.png";
       var user_state = "POLICE";
       store.dispatch("setUserState", user_state);
-      this.$router.push('signIn');
+      this.$router.push("signIn");
     },
   },
   mounted() {},
 };
 </script>
 <template>
-  <div className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')]">
-  <!-- <div className="hero-overlay bg-opacity-70"></div> -->
+  <div
+    className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')]"
+  >
+    <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center lg:flex-col">
       <div class="lg:absolute lg:left-[150px] lg:top-[135px] lg:w-[40rem]">
-        <div class="text-center text-[85px] lg:text-[85px] xl:text-[180px] font-bold" style="font-family: 'Times New Roman', Times, serif;">
+        <div
+          class="text-center text-[85px] lg:text-[85px] xl:text-[180px] font-bold"
+          style="font-family: 'Times New Roman', Times, serif"
+        >
           <span class="text-wt">FINEV</span><span class="text-ylv">A</span>
         </div>
         <span class="text-justify indent-8">
           <p text-justify>
-         <b>FINEVA</b> is an innovative solution that revolutionizes traffic violations and license management. 
-          It simplifies the process of paying fines and retrieving licenses, saving drivers time and effort.
-          <b>FINEVA</b> provides a convenient online platform for secure fine settlement, eliminating the need for 
-           physical visits to police stations. It also offers police officers instant access to license verification, 
-           allowing them to check driver's license validity using their License Number. This simplifies the burden of 
-           traditional procedures, promoting a seamless and user-friendly experience for both drivers and police officers.
-          </p>  </span>
+            <b>FINEVA</b> is an innovative solution that revolutionizes traffic
+            violations and license management. It simplifies the process of
+            paying fines and retrieving licenses, saving drivers time and
+            effort. <b>FINEVA</b> provides a convenient online platform for
+            secure fine settlement, eliminating the need for physical visits to
+            police stations. It also offers police officers instant access to
+            license verification, allowing them to check driver's license
+            validity using their License Number. This simplifies the burden of
+            traditional procedures, promoting a seamless and user-friendly
+            experience for both drivers and police officers.
+          </p>
+        </span>
       </div>
       <br /><br />
       <div
@@ -50,12 +60,15 @@ export default {
         >
           <div class="flex justify-between">
             <img
-              class="w-[55px] h-[55px] md:w-[65px] md:h-[65px] lg:w-[75px] lg:h-[75px] xl:w-[85] xl:h-[85] rounded-full hover:bg-white" @click="toggleDriver()" id="driver"
+              class="w-[55px] h-[55px] md:w-[65px] md:h-[65px] lg:w-[75px] lg:h-[75px] xl:w-[85] xl:h-[85] rounded-full hover:bg-white"
+              @click="toggleDriver()"
+              id="driver"
               src="../assets/image/driver.png"
             />
             <img
-              class="w-[55px] h-[55px] md:w-[65px] md:h-[65px] lg:w-[75px] lg:h-[75px] xl:w-[85] xl:h-[85] rounded-full hover:bg-white" 
-              @click="togglePolice()" id="police"
+              class="w-[55px] h-[55px] md:w-[65px] md:h-[65px] lg:w-[75px] lg:h-[75px] xl:w-[85] xl:h-[85] rounded-full hover:bg-white"
+              @click="togglePolice()"
+              id="police"
               src="../assets/image/police.png"
             />
           </div>
@@ -64,6 +77,4 @@ export default {
     </div>
   </div>
 </template>
-<style>
-</style>
-
+<style></style>
