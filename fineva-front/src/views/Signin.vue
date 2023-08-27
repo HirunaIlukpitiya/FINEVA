@@ -29,6 +29,13 @@ export default {
         this.$router.push("/driverReg");
       }
     },
+    navHome() {
+      if (this.userState == "POLICE") {
+        this.$router.push("/policeHome");
+      } else if (this.userState == "DRIVER") {
+        this.$router.push("/driverHome");
+      }
+    },
   },
   mounted() {
     this.userState = store.state.userState;
@@ -40,7 +47,7 @@ export default {
 </script>
 <template>
   <div
-    className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')]"
+    className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
     <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center">
@@ -108,7 +115,7 @@ export default {
               <button
                 type="submit"
                 class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
+                @click="navHome()">
                 Sign In
               </button>
             </div>

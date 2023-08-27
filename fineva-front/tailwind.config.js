@@ -11,15 +11,11 @@ module.exports = {
         'ylv':'#FDDD0D',
         'wt':'#FAF9F9',
       },
-      fontFamily: {
-        'london': [''],
-      },
     },
   },
   plugins: [
     require("daisyui"),
     //require("@tailwindcss/aspect-ratio"),
-    require('tailwindcss-animated'),
   ],
 }
 

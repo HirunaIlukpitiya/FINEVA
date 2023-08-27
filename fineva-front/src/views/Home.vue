@@ -21,7 +21,7 @@ export default {
 </script>
 <template>
   <div
-    className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')]"
+    className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
     <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center lg:flex-col">
