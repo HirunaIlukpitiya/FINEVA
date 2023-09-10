@@ -1,15 +1,42 @@
 <script>
 import { watchIgnorable } from "@vueuse/core";
+import axios from "axios";
 import store from "../store";
-export default {
-  data(){
-    return{
 
+export default {
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+      contactNumber: "",
+      licenseNumber: "",
+      password: "",
+      password2: "",
+      province: "",
+      district: "",
     };
   },
   methods: {
-    submitForm(){
-
+    submitForm() {
+      axios
+        .post("http://localhost:8000/User/DriverRegister", {
+          Email: this.email,
+          Fname: this.firstName,
+          Lname: this.lastName,
+          Password: this.password,
+          password2: this.password2,
+          NIC: this.licenseNumber,
+          Province: this.province,
+          District: this.district,
+          contact: this.contactNumber,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

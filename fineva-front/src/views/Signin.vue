@@ -21,12 +21,12 @@ export default {
       })
       .then((response)=>{
         console.log(response);
+        this.idNum = "";
+        this.password = "";
       })
       .catch((error)=>{
         console.log(error);
       });
-      this.idNum = "";
-      this.password = "";
     },
     apiLink(){
       if (userState == "POLICE") {
@@ -60,6 +60,13 @@ export default {
     console.log("this: ", this.userState);
     console.log("store : ", store.state.userState);
     this.getIDtype(this.userState);
+    if(this.userState == "POLICE"){
+      this.api = "http://localhost:8000/User/PoliceOfficerLogin";
+    }else{
+      this.api = "http://localhost:8000/User/DriverLogin";
+    }
+
+  console.log("API: ",this.api);
   },
 };
 </script>
