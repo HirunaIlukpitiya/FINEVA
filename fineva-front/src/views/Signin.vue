@@ -1,16 +1,41 @@
 <script>
+import axios from "axios";
 import store from "../store";
 export default {
   data() {
     return {
       userState: "",
       idLabel: "",
-      email: "",
+      idNum: "",
       password: "",
       keyword: "",
+      api:"",
     };
   },
   methods: {
+    submitForm(){
+      axios
+      .post(this.api, {
+        ID: this.idNum,
+        password: this.password,
+      })
+      .then((response)=>{
+        console.log(response);
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+      this.idNum = "";
+      this.password = "";
+    },
+    apiLink(){
+      if (userState == "POLICE") {
+          this.api = "";
+
+      } else if (userState == "DRIVER") {
+          this.api = "";
+      }
+    },
     getIDtype(userState) {
       if (userState == "POLICE") {
         this.idLabel = "Service Id";
@@ -27,13 +52,6 @@ export default {
         this.$router.push("/policeReg");
       } else if (this.userState == "DRIVER") {
         this.$router.push("/driverReg");
-      }
-    },
-    navHome() {
-      if (this.userState == "POLICE") {
-        this.$router.push("/policeHome");
-      } else if (this.userState == "DRIVER") {
-        this.$router.push("/driverHome");
       }
     },
   },
@@ -60,9 +78,7 @@ export default {
         </div>
 
         <div>
-          <form
-            action="#"
-            method="POST"
+          <form @submit.prevent = "submitForm"
             class="text-center flex flex-col justify-center items-center mx-auto mt-16 max-w-xl sm:mt-4"
           >
             <div class>
@@ -77,6 +93,7 @@ export default {
                     type="text"
                     name="lnum"
                     id="lnum"
+                    v-model="idNum"
                     autocomplete=""
                     class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -94,6 +111,7 @@ export default {
                     type="password"
                     name="dPswd"
                     id="dPswd"
+                    v-model="password"
                     autocomplete=""
                     class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -114,8 +132,7 @@ export default {
             <div class="mt-0">
               <button
                 type="submit"
-                class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                @click="navHome()">
+                class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Sign In
               </button>
             </div>

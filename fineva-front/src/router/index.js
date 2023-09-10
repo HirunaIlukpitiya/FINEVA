@@ -9,19 +9,9 @@ const router = createRouter({
       component:()=>import('../views/Home.vue')
     },
     {
-      path:"/driverSignIn",
-      name:"driverSignIn",
-      component:()=>import('../views/driverSignIn.vue')
-    },
-    {
-      path:"/policeSignIn",
-      name:"policeSignIn",
-      component:()=>import('../views/policeSignIn.vue')
-    },
-    {
       path:"/signIn",
       name:"signIn",
-      component:()=>import('../views/signin.vue')
+      component:()=>import('../views/Signin.vue')
     },
     {
       path:"/driverReg",
@@ -47,6 +37,11 @@ const router = createRouter({
       path:"/policeAddfine",
       name:"policeAddfine",
       component:()=>import('../views/policeAddfine.vue')
+    },
+    {
+      path:"/driverHome",
+      name:"driverHome",
+      component:()=>import('../views/driverHome.vue')
     },
   ]
 })
