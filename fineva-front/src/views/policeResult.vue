@@ -4,28 +4,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { watchIgnorable } from "@vueuse/core";
 import store from "../store";
 export default {
-  
-  // methods: {
-  //   // pReg(){
-  //   //   document.getElementById("pSignUp")
-  //   //   var user_state = "Police";
-  //   //   store.dispatch('setUserState',user_state);
-  //   //   this.$router.push('./policeReg');
-  //   // },
-  //   // pSignIn(){
-  //   //   document.getElementById("police").src="../../src/assets/image/p2.png"
-  //   //   var user_state = "Police"
-  //   //   store.dispatch('setUserState',user_state);
-  //   //   this.$router.push('./signIn');
-  //   // }, 
-  // },
+
 };
 
 </script>
 
-<!-- <style lang="css">
-@import 'C:\Users\User\OneDrive\Documents\GitHub\FINEVA\FINEVA-FRONTEND\Fineva-Frontend\CSS\policeResult.css';
-</style> -->
+
 
 <template>
 
@@ -43,16 +27,6 @@ export default {
         <span class="sr-only text-black">Open user menu</span>
         <img class="w-8 h-8 rounded-full" src="src\assets\image\propic.jpg" alt="user photo">
       </button>
-        <!-- <div class="dropdown">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-        </div> -->
   </div>
 
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">

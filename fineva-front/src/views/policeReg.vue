@@ -2,6 +2,7 @@
 import { watchIgnorable } from "@vueuse/core";
 import axios from "axios";
 import store from "../store";
+import { toast } from "vue3-toastify";
 
 export default {
   data() {
@@ -13,29 +14,33 @@ export default {
       licenseNumber: "",
       password: "",
       password2: "",
-      province: "",
-      district: "",
     };
   },
   methods: {
     submitForm() {
       axios
-        .post("http://localhost:8000/User/DriverRegister", {
+        .post("http://localhost:8000/User/PoliceOfficerRegister", {
           Email: this.email,
           Fname: this.firstName,
           Lname: this.lastName,
           Password: this.password,
           password2: this.password2,
-          NIC: this.licenseNumber,
-          Province: this.province,
-          District: this.district,
-          contact: this.contactNumber,
+          RegiNumber: this.licenseNumber,
+          Contact: this.contactNumber,
         })
         .then((response) => {
           console.log(response);
+          this.$router.push("/signIn")
+          toast.success("Success!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         })
         .catch((error) => {
           console.log(error);
+          const err = error.response.data.message;
+        toast.error(err, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         });
     },
   },
@@ -45,7 +50,6 @@ export default {
   <div
     className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
-    <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center">
       <div class="lg:absolute lg:left-[80px] lg:top-[155px] lg:w-[40rem]">
         <div
@@ -72,7 +76,9 @@ export default {
                       type="text"
                       name="pFname"
                       id="pFname"
+                      required
                       autocomplete=""
+                      v-model="firstName"
                       class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -85,11 +91,31 @@ export default {
                   >
                   <div class="mt-2.5">
                     <input
-                      type="password"
+                      type="text"
                       name="pLname"
                       id="pLname"
+                      required
+                      v-model="lastName"
                       autocomplete=""
                       class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class="sm:col-span-2">
+                  <label
+                    for="company"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Email</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="email"
+                      name="pSid"
+                      id="pSid"
+                      required
+                      v-model="email"
+                      autocomplete=""
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -104,6 +130,8 @@ export default {
                       type="text"
                       name="pSid"
                       id="pSid"
+                      required
+                      v-model="licenseNumber"
                       autocomplete=""
                       class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -111,36 +139,60 @@ export default {
                 </div>
                 <div class="sm:col-span-2">
                   <label
-                    for="text"
+                    for="company"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Contact Number</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="tel"
+                      name="pSid"
+                      id="pSid"
+                      required
+                      v-model="contactNumber"
+                      autocomplete=""
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="company"
                     class="block text-sm font-semibold leading-6 text-white-900"
                     >Password</label
                   >
                   <div class="mt-2.5">
                     <input
                       type="password"
-                      name="pPswd"
-                      id="pPswd"
+                      name="pFname"
+                      id="pFname"
+                      required
+                      autocomplete=""
+                      v-model="password"
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="text"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Confirm Password</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="password"
+                      name="pLname"
+                      id="pLname"
+                      required
+                      v-model="password2"
                       autocomplete=""
                       class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
               </div>
-
               <br />
-              <!--  <SwitchGroup as="div" class="flex gap-x-4 sm:col-span-2">
-          <div class="flex h-6 items-center">
-            <Switch v-model="agreed" :class="[agreed ? 'bg-indigo-600' : 'bg-gray-200', 'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600']">
-              <span class="sr-only">Agree to policies</span>
-              <span aria-hidden="true" :class="[agreed ? 'translate-x-3.5' : 'translate-x-0', 'h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out']" />
-            </Switch>
-          </div>
-          <SwitchLabel class="text-sm leading-6 text-white-600">
-            I agree to privacy & policies. Create my account!
-            {{ ' ' }}
-          </SwitchLabel>
-        </SwitchGroup>
-      -->
             </div>
             <br />
             <div class="mt-0">

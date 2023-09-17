@@ -2,6 +2,7 @@
 import { watchIgnorable } from "@vueuse/core";
 import axios from "axios";
 import store from "../store";
+import { toast } from "vue3-toastify";
 
 export default {
   data() {
@@ -15,6 +16,8 @@ export default {
       password2: "",
       province: "",
       district: "",
+      NICNumber: "",
+
     };
   },
   methods: {
@@ -26,16 +29,25 @@ export default {
           Lname: this.lastName,
           Password: this.password,
           password2: this.password2,
-          NIC: this.licenseNumber,
+          LIN: this.licenseNumber,
           Province: this.province,
           District: this.district,
           contact: this.contactNumber,
+          NIC: this.NICNumber,
         })
         .then((response) => {
+          this.$router.push("/signIn")
           console.log(response);
+          toast.success("Success!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         })
         .catch((error) => {
           console.log(error);
+          const err = error.response.data.message;
+        toast.error(err, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         });
     },
   },
@@ -45,7 +57,6 @@ export default {
   <div
     class="min-h-screen bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
-    <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center">
       <div class="lg:absolute lg:left-[80px] lg:top-[155px] lg:w-[40rem]">
         <div
@@ -98,6 +109,42 @@ export default {
                     />
                   </div>
                 </div>
+                <div class>
+                  <label
+                    for="company"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >NIC</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="text"
+                      name="dFname"
+                      id="dFname"
+                      autocomplete=""
+                      required
+                      v-model="NICNumber"
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="text"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >License Number</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="text"
+                      name="dLname"
+                      id="dLname"
+                      autocomplete=""
+                      required
+                      v-model="licenseNumber"
+                      class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
                 <div class="sm:col-span-2">
                   <label
                     for="text"
@@ -113,24 +160,6 @@ export default {
                       autocomplete=""
                       v-model="email"
                       class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div class="sm:col-span-2">
-                  <label
-                    for="company"
-                    class="block text-sm font-semibold leading-6 text-white-900"
-                    >License Number</label
-                  >
-                  <div class="mt-2.5">
-                    <input
-                      type="text"
-                      name="dLnum"
-                      id="dLnum"
-                      required
-                      autocomplete=""
-                      v-model="licenseNumber"
-                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>

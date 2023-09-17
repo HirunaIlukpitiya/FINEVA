@@ -7,12 +7,14 @@ export default {
       document.getElementById("driver").src = "../../src/assets/image/d2.png";
       var user_state = "DRIVER";
       store.dispatch("setUserState", user_state);
+      localStorage.setItem("userState", user_state);
       this.$router.push("signIn");
     },
     togglePolice() {
       document.getElementById("police").src = "../../src/assets/image/p2.png";
       var user_state = "POLICE";
       store.dispatch("setUserState", user_state);
+      localStorage.setItem("userState", user_state);
       this.$router.push("signIn");
     },
   },
@@ -23,7 +25,6 @@ export default {
   <div
     className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
-    <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center lg:flex-col">
       <div class="lg:absolute lg:left-[150px] lg:top-[135px] lg:w-[40rem]">
         <div

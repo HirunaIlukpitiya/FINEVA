@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import store from "../store";
+import { toast } from "vue3-toastify";
 export default {
   data() {
     return {
@@ -10,6 +11,7 @@ export default {
       password: "",
       keyword: "",
       api:"",
+      dashRoute:"",
     };
   },
   methods: {
@@ -21,20 +23,19 @@ export default {
       })
       .then((response)=>{
         console.log(response);
+        toast.success("Success!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         this.idNum = "";
         this.password = "";
+        this.$router.push(this.dashRoute);
       })
       .catch((error)=>{
-        console.log(error);
+        const err = error.response.data.message;
+        toast.error(err, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       });
-    },
-    apiLink(){
-      if (userState == "POLICE") {
-          this.api = "";
-
-      } else if (userState == "DRIVER") {
-          this.api = "";
-      }
     },
     getIDtype(userState) {
       if (userState == "POLICE") {
@@ -42,7 +43,7 @@ export default {
         this.keyword = "P   O   L   I   C   E";
         console.log(this.idLabel);
       } else if (userState == "DRIVER") {
-        this.idLabel = "License Number";
+        this.idLabel = "NIC Number";
         this.keyword = "D   R   I   V   E   R";
         console.log(this.idLabel);
       }
@@ -62,11 +63,14 @@ export default {
     this.getIDtype(this.userState);
     if(this.userState == "POLICE"){
       this.api = "http://localhost:8000/User/PoliceOfficerLogin";
+      this.dashRoute = "/policeHome";
     }else{
       this.api = "http://localhost:8000/User/DriverLogin";
+      this.dashRoute = "/driverHome";
     }
 
   console.log("API: ",this.api);
+  console.log("route ",this.dashRoute);
   },
 };
 </script>
@@ -74,7 +78,6 @@ export default {
   <div
     className="hero min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
-    <!-- <div className="hero-overlay bg-opacity-70"></div> -->
     <div class="mt-6 items-center">
       <div class="lg:absolute lg:left-[80px] lg:top-[155px] lg:w-[40rem]">
         <div
@@ -129,7 +132,7 @@ export default {
               <div class="flex gap-x-4 sm:col-span-2">
                 <div class="text-sm leading-6 text-white-600">
                   Haven't Registered yet? Click Here to
-                  <span class="font-semibold text-indigo-600" @click="navReg()"
+                  <span :class="'font-semibold text-ylv'" @click="navReg()"
                     >Sign&nbsp;Up</span
                   >.
                 </div>
