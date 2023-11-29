@@ -13,6 +13,7 @@ const customerAttributes = {
         first_name: "Demo",
         last_name: "User",
         phone: "+94771234567",
+        
         email: "user@example.com",
         address: "No. 50, Highlevel Road",
         city: "Panadura",
