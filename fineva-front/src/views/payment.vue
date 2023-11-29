@@ -10,44 +10,44 @@ import {
 Payhere.init("1223813", AccountCategory.SANDBOX);
 
 const customerAttributes = {
-        first_name: "Demo",
-        last_name: "User",
-        phone: "+94771234567",
-        
-        email: "user@example.com",
-        address: "No. 50, Highlevel Road",
-        city: "Panadura",
-        country: "Sri Lanka",
+  first_name: "Demo",
+  last_name: "User",
+  phone: "+94771234567",
+
+  email: "user@example.com",
+  address: "No. 50, Highlevel Road",
+  city: "Panadura",
+  country: "Sri Lanka",
 };
 
 export default {
-
-methods:{
+  methods: {
     async checkout() {
-        try{
-      const customer = new Customer(customerAttributes);
+      try {
+        const customer = new Customer(customerAttributes);
 
-      const checkoutData = new CheckoutParams({
-    returnUrl: 'http://localhost:3000/return',
-    cancelUrl: 'http://localhost:3000/cancel',
-    notifyUrl: 'http://localhost:8080/notify',
-    order_id: '112233',
-    itemTitle: 'Demo Item',
-    currency: CurrencyType.LKR,
-    amount: 100
-  })
-  const checkout = new PayhereCheckout(customer,checkoutData);
-  checkout.start();
-}catch(err){
-    console.log(err);
-}    
-}
-  }
-}
-
-
+        const checkoutData = new CheckoutParams({
+          returnUrl: "http://localhost:3000/return",
+          cancelUrl: "http://localhost:3000/cancel",
+          notifyUrl: "http://localhost:8080/notify",
+          order_id: "112233",
+          itemTitle: "Demo Item",
+          currency: CurrencyType.LKR,
+          amount: 100,
+          hash: 'CF596A3A5F0DB2A69E889A81BE04D7BB'
+        });
+        const checkout = new PayhereCheckout(customer, checkoutData);
+        checkout.start();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+};
 </script>
 
 <template>
-  <button type="submit" id="payhere-payment" @click="checkout()">PayHere Pay</button>
+  <button type="submit" id="payhere-payment" @click="checkout()">
+    PayHere Pay
+  </button>
 </template>

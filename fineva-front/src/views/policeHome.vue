@@ -38,20 +38,14 @@ export default {
           this.address = response.data.driver.Address;
           this.gender = response.data.driver.Gender;
           this.contact = response.data.driver.Contact;
-          axios
-        .post("", {
-          LIN: this.LIN,
-        })
-        .then((respone) => {
-          console.log(response);
         })
         .catch((error) => {
           console.log(error);
         });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    },
+
+    moveToAddfine(){
+      this.$router.push("/policeAddfine");
     },
   },
 };
@@ -263,13 +257,10 @@ export default {
           </div>
         </tbody>
       </table>
-
-      <router-link to="/policeAddfine">
-        <button type="button" class="btn btn-danger" id="status">
+        <button type="button" class="btn btn-danger" id="status" @click="moveToAddfine()">
           <i class="bi bi-plus-lg" id="check"></i>
           Add Fine
         </button>
-      </router-link>
     </div>
   </div>
 </template>

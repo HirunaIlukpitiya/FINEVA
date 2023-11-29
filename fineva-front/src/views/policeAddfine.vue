@@ -18,19 +18,18 @@ export default {
   },
   methods: {
     submitForm() {
-      axios.post("", {
-         
-      })
-      .then((response)=>{
-        console.log(response);
-      })
-      .catch((error)=>{
-        console.log(error);
-        const err = error.response.data.message;
-        toast.error(err,{
-          position: toast.POSITION.TOP_CENTER,
+      axios
+        .post("", {})
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          const err = error.response.data.message;
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         });
-      });
     },
     Amount() {
       console.log(this.fineName);
@@ -221,7 +220,7 @@ export default {
                           autocomplete=""
                           v-model="fineName"
                           required
-                          @click = "Amount()"
+                          @click="Amount()"
                           class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         >
                           <option value="1">Identification Plates</option>
@@ -236,34 +235,79 @@ export default {
                           <option value="5">
                             Driving Special Purpose Vehicles without a license
                           </option>
-                          <option value="6"></option>
-                          <option value="7"></option>
-                          <option value="8"></option>
-                          <option value="9"></option>
-                          <option value="10"></option>
-                          <option value="11"></option>
-                          <option value="12"></option>
-                          <option value="13"></option>
-                          <option value="14"></option>
-                          <option value="15"></option>
-                          <option value="16"></option>
-                          <option value="17"></option>
-                          <option value="18"></option>
-                          <option value="19"></option>
-                          <option value="20"></option>
-                          <option value="21"></option>
-                          <option value="22"></option>
-                          <option value="23"></option>
-                          <option value="24"></option>
-                          <option value="25"></option>
-                          <option value="26"></option>
-                          <option value="27"></option>
-                          <option value="28"></option>
-                          <option value="29"></option>
-                          <option value="30"></option>
-                          <option value="31"></option>
-                          <option value="32"></option>
-                          <option value="33"></option>
+                          <option value="6">
+                            Driving a vehicle loaded with chemicals or hazardous
+                            waste without a license
+                          </option>
+                          <option value="7">
+                            Not having a License to drive a specific class of
+                            vehicles
+                          </option>
+                          <option value="8">Not carrying D.L.</option>
+                          <option value="9">
+                            Not having an instructor's license
+                          </option>
+                          <option value="10">Converting Speed Limits</option>
+                          <option value="11">Disobeying Road Rules</option>
+                          <option value="12">
+                            Activities obstructing control of the motor vehicle
+                          </option>
+                          <option value="13">Signals by Driver</option>
+                          <option value="14">
+                            Reversing for a long Distance
+                          </option>
+                          <option value="15">Sound or Light warnings</option>
+                          <option value="16">
+                            Excessive emission of smoke, etc.
+                          </option>
+                          <option value="17">Riding on running boards</option>
+                          <option value="18">
+                            No. of persons in front seats
+                          </option>
+                          <option value="19">Non-use of seat belts</option>
+                          <option value="20">
+                            Not wearing protective helmets
+                          </option>
+                          <option value="21">
+                            Distribution of advertisements
+                          </option>
+                          <option value="22">Excessive use of Noise</option>
+                          <option value="23">
+                            Disobeying Directions & Signals Police Officers or
+                            Traffic Wardens
+                          </option>
+                          <option value="24">
+                            Non-Compliance with Traffic Signals
+                          </option>
+                          <option value="25">
+                            Failure to take precautions when discharging fuel
+                            into tank
+                          </option>
+                          <option value="26">Halting or Parking</option>
+                          <option value="27">
+                            Non-use of precautions when parking
+                          </option>
+                          <option value="28">
+                            Excessive carriage of persons in motor car or
+                            private coach
+                          </option>
+                          <option value="29">
+                            Carriage of passengers in excess in omnibuses
+                          </option>
+                          <option value="30">
+                            Carriage on lorry or Motor Tricycle van of Goods in
+                            excess
+                          </option>
+                          <option value="31">
+                            No. of persons carried in a lorry
+                          </option>
+                          <option value="32">
+                            Violations of Regulations on motor vehicles
+                          </option>
+                          <option value="33">
+                            Failure to carry the Emission certificate or the
+                            Fitness Certificate
+                          </option>
                         </select>
                       </div>
                     </div>
