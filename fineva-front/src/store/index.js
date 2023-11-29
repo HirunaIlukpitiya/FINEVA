@@ -13,7 +13,6 @@ const store = createStore({
         setUserState({commit},user_state){
             commit("userState_Change",user_state);
         },
-        
     },
 })
 

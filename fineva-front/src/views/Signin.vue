@@ -66,7 +66,7 @@ export default {
       this.dashRoute = "/policeHome";
     }else{
       this.api = "http://localhost:8000/User/DriverLogin";
-      this.dashRoute = "/driverHome";
+      this.dashRoute = "/payment";
     }
 
   console.log("API: ",this.api);
@@ -162,7 +162,7 @@ export default {
             <span class="text-wt text-justify">{{ keyword }}</span>
           </div>
         </div>
-        <span class="text-justify indent-">
+        <span class="text-justify text-wt">
           <br />
           <p text-justify>
             In the context of the <b>FINEVA</b> app, the driver role pertains to

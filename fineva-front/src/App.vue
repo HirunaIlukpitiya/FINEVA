@@ -1,12 +1,11 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-// import policeReg from './views/policeReg.Vue'
-// import driverSign from './views/driverSignIn.vue'
+import { RouterView } from 'vue-router'
+import store from './store';
+
 </script>
 
 <template>
 <RouterView/>
-<!-- <driverSign/>  -->
 </template>
 
 <style scoped>

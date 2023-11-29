@@ -12,6 +12,8 @@ export default {
       email: "",
       contactNumber: "",
       licenseNumber: "",
+      rank: "",
+      station: "",
       password: "",
       password2: "",
     };
@@ -27,6 +29,8 @@ export default {
           password2: this.password2,
           RegiNumber: this.licenseNumber,
           Contact: this.contactNumber,
+          Rank: this.rank,
+          Station: this.station,
         })
         .then((response) => {
           console.log(response);

@@ -17,6 +17,8 @@ export default {
       province: "",
       district: "",
       NICNumber: "",
+      gender: "",
+      address: "",
 
     };
   },
@@ -32,8 +34,10 @@ export default {
           LIN: this.licenseNumber,
           Province: this.province,
           District: this.district,
-          contact: this.contactNumber,
+          Contact: this.contactNumber,
           NIC: this.NICNumber,
+          Gender: this.gender,
+          Address: this.address,
         })
         .then((response) => {
           this.$router.push("/signIn")
@@ -69,7 +73,7 @@ export default {
         <div>
           <form
             @submit.prevent="submitForm"
-            class="text-center justify-center items-center mx-auto mt-16 max-w-xl sm:mt-4"
+            class="text-center justify-center items-center mx-auto mt-16 max-w-xl sm:mt-4 relative"
           >
             <div class>
               <div class="grid gap-4">
@@ -165,20 +169,58 @@ export default {
                 </div>
                 <div class="sm:col-span-2">
                   <label
-                    for="company"
+                    for="text"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Address</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="text"
+                      name="dPswd"
+                      id="dPswd"
+                      required
+                      autocomplete=""
+                      v-model="address"
+                      class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Gender</label
+                  >
+                  <div class="mt-2.5">
+                    <select
+                      name="dFname"
+                      id="dFname"
+                      autocomplete=""
+                      v-model="gender"
+                      required
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>                  
+                  </select>
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="text"
                     class="block text-sm font-semibold leading-6 text-white-900"
                     >Contact Number</label
                   >
                   <div class="mt-2.5">
                     <input
-                      type="tel"
-                      name="dLnum"
-                      id="dLnum"
+                    type="tel"
+                      name=""
+                      id=""
                       autocomplete=""
-                      required
                       v-model="contactNumber"
-                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                      required
+                      class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >                    
                   </div>
                 </div>
                 <div class>
