@@ -84,7 +84,7 @@ export default {
       this.dashRoute = "/policeHome";
     } else {
       this.api = "http://localhost:8000/User/DriverLogin";
-      this.dashRoute = "/driverHome";
+      this.dashRoute = "/payment";
     }
 
     console.log("API: ", this.api);

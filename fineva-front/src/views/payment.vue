@@ -90,7 +90,7 @@ export default{
         "items": "Door bell wireles",
         "amount": "1000.00",
         "currency": "LKR",
-        "hash": "8AE29BB4A84DE705B5D5C1DB8BDD4889", // *Replace with generated hash retrieved from backend
+        "hash": "B00CE8EB5D734FC1B96EFE6B13005BEF", // *Replace with generated hash retrieved from backend
         "first_name": "Saman",
         "last_name": "Perera",
         "email": "samanp@gmail.com",
