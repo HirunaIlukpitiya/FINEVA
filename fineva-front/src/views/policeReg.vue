@@ -34,17 +34,17 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.$router.push("/signIn")
+          this.$router.push("/signIn");
           toast.success("Success!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+            position: toast.POSITION.TOP_CENTER,
+          });
         })
         .catch((error) => {
           console.log(error);
           const err = error.response.data.message;
-        toast.error(err, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         });
     },
   },
@@ -64,7 +64,8 @@ export default {
         </div>
 
         <div>
-          <form @submit.prevent = "submitForm"
+          <form
+            @submit.prevent="submitForm"
             class="text-center justify-center items-center mx-auto mt-16 max-w-xl sm:mt-4"
           >
             <div class>
@@ -163,6 +164,42 @@ export default {
                   <label
                     for="company"
                     class="block text-sm font-semibold leading-6 text-white-900"
+                    >Rank</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="text"
+                      name="pFname"
+                      id="pFname"
+                      required
+                      autocomplete=""
+                      v-model="rank"
+                      class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="text"
+                    class="block text-sm font-semibold leading-6 text-white-900"
+                    >Station</label
+                  >
+                  <div class="mt-2.5">
+                    <input
+                      type="text"
+                      name="pLname"
+                      id="pLname"
+                      required
+                      v-model="station"
+                      autocomplete=""
+                      class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div class>
+                  <label
+                    for="company"
+                    class="block text-sm font-semibold leading-6 text-white-900"
                     >Password</label
                   >
                   <div class="mt-2.5">
@@ -202,8 +239,7 @@ export default {
             <div class="mt-0">
               <button
                 type="submit"
-                a
-                href="/policeSignIn"
+                href=""
                 class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Continue
@@ -225,9 +261,9 @@ export default {
             <span class="text-wt italic text-justify">P O L I C E</span>
           </div>
         </div>
-        <span class="text-justify indent-">
+        <span class="text-justify indent text-wt">
           <br />
-          <p text-justify>
+          <p text-justify class="text-wt">
             The <b>FINEVA</b> app's admin role for the police is designed to
             provide law enforcement agencies with a comprehensive tool to
             monitor and investigate financial activities related to potential

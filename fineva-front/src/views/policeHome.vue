@@ -1,6 +1,4 @@
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import { watchIgnorable } from "@vueuse/core";
 import store from "../store";
 import axios from "axios";
@@ -17,21 +15,25 @@ export default {
       address: "",
       contact: "",
       gender: "",
-      valid: "",
+      valid: true,
+      paystatus: "",
     };
   },
 
   methods: {
     submitForm() {
       axios
-        .post("http://localhost:8000/Police/driverSearch", {
+        .post("http://localhost:8000/Driver/driverSearch", {
           LIN: this.LIN,
         })
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           if (response.status == 200) {
             this.rend = true;
           }
+          const driver = JSON.stringify(response.data.driver);
+          localStorage.setItem("Driver", driver);
+          store.dispatch("setDriverDetails");
           this.name = `${response.data.driver.Fname} ${response.data.driver.Lname}`;
           this.licNumber = response.data.driver.LIN;
           this.nic = response.data.driver.NIC;
@@ -42,10 +44,37 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+
+      axios
+        .post("http://localhost:8000/Fine/getFine", {
+          LIN: this.LIN,
+        })
+        .then((response) => {
+          //console.log(response);
+          this.fines = response.data.fine;
+          this.fines = this.fines.reverse();
+          this.chechValidity();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
-    moveToAddfine(){
+    moveToAddfine() {
       this.$router.push("/policeAddfine");
+    },
+
+    chechValidity() {
+      for (let index = 0; index < this.fines.length; index++) {
+        const element = this.fines[index];
+        console.log(element);
+        if (!element.PayStatus) {
+          this.valid = false;
+        }
+
+        console.log("Pay Status :  " + element.PayStatus);
+        console.log("Valid : " + this.valid);
+      }
     },
   },
 };
@@ -105,7 +134,7 @@ export default {
               <a
                 href="#"
                 class="no-underline py-1 pl-3 pr-4 md:hover:text-amber-400 md:p-0 dark:text-gray-900 md:dark:hover:text-sky-500"
-                >Settings</a
+                >Profile</a
               >
             </li>
             <li>
@@ -218,8 +247,15 @@ export default {
               <p class="text-muted mb-0">{{ gender }}</p>
             </td>
             <td>
-              <span class="badge badge-success rounded-pill d-inline"
+              <span
+                v-if="valid"
+                class="badge badge-success rounded-pill d-inline"
                 >VALID LICENSE</span
+              >
+              <span
+                v-if="!valid"
+                class="badge badge-error rounded-pill d-inline"
+                >INVALID LICENSE ⚠️</span
               >
             </td>
             <td>{{ address }}</td>
@@ -229,8 +265,11 @@ export default {
           </tr>
         </tbody>
       </table>
+      <br />
 
-      <h3 class="fw-normal mb-5" style="color: rgb(4, 1, 37)">Fine Details</h3>
+      <h3 class="fw-normal mb-5" style="color: rgb(248, 248, 248)">
+        Fine Details
+      </h3>
 
       <table class="table table-hover">
         <thead class="table-dark">
@@ -242,25 +281,35 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <div v-for="fine in fines" :key="fine.id">
-            <tr>
-              <td scope="row">{{ date }}</td>
-              <td>{{ id }}</td>
-              <td>Rs: {{ amount }}</td>
-              <td>
-                <button type="button" class="btn btn-success" id="status">
-                  <i class="bi bi-check-lg bi-success" id="check"></i>
-                  Done
-                </button>
-              </td>
-            </tr>
-          </div>
+          <tr v-for="fine in fines" :key="fine._id">
+            <td scope="row">{{ fine.fineDateTime }}</td>
+            <td>{{ fine.fineID }}</td>
+            <td>{{ "Rs: " + fine.fineAmount }}</td>
+            <td>
+              <span
+                v-if="fine.PayStatus"
+                class="badge badge-success rounded-pill d-inline"
+              >
+                Done ✔️
+              </span>
+              <span
+                v-if="!fine.PayStatus"
+                class="badge badge-error rounded-pill d-inline"
+                >Pending</span
+              >
+            </td>
+          </tr>
         </tbody>
       </table>
-        <button type="button" class="btn btn-danger" id="status" @click="moveToAddfine()">
-          <i class="bi bi-plus-lg" id="check"></i>
-          Add Fine
-        </button>
+      <button
+        type="button"
+        class="btn btn-info"
+        id="status"
+        @click="moveToAddfine()"
+      >
+        <i class="bi bi-plus-lg" id="check"></i>
+        Add Fine
+      </button>
     </div>
   </div>
 </template>

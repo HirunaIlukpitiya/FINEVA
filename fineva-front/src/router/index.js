@@ -13,7 +13,6 @@ const router = createRouter({
       path:"/signIn",
       name:"signIn",
       component:()=>import('../views/Signin.vue')
-
     },
     {
       path:"/driverReg",
@@ -49,6 +48,16 @@ const router = createRouter({
       path:"/payment",
       name:"payment",
       component:()=>import('../views/payment.vue')
+    },
+    {
+      path:"/policeProfile",
+      name:"policeProfile",
+      component:()=>import('../views/policeProfile.vue')
+    },
+    {
+      path:"/driverProfile",
+      name:"driverProfile",
+      component:()=>import("../views/driverProfile.vue")
     },
   ]
 })

@@ -10,32 +10,50 @@ export default {
       idNum: "",
       password: "",
       keyword: "",
-      api:"",
-      dashRoute:"",
+      api: "",
+      dashRoute: "",
     };
   },
   methods: {
-    submitForm(){
+    submitForm() {
       axios
-      .post(this.api, {
-        ID: this.idNum,
-        password: this.password,
-      })
-      .then((response)=>{
-        console.log(response);
-        toast.success("Success!", {
-          position: toast.POSITION.TOP_CENTER,
+        .post(this.api, {
+          ID: this.idNum,
+          password: this.password,
+        })
+        .then((response) => {
+          console.log(response);
+          if (this.userState == "POLICE") {
+            const officerDetails = JSON.stringify(
+              response.data.FoundPoliceOfficer
+            );
+            localStorage.setItem("Officer", officerDetails);
+            const loggedIn = this.userState;
+            localStorage.setItem("loggedIn", loggedIn);
+            store.dispatch("setOfficerDetails");
+            store.dispatch("setLoggedIn");
+          } else if ((this.userState = "DRIVER")) {
+            const driverDetails = JSON.stringify(response.data.driver);
+            localStorage.setItem("Driver", driverDetails);
+            const loggedIn = this.userState;
+            localStorage.setItem("loggedIn", loggedIn);
+            store.dispatch("setDriverDetails");
+            store.dispatch("setLoggedIn");
+          }
+          toast.success("Success!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          this.idNum = "";
+          this.password = "";
+          this.$router.push(this.dashRoute);
+        })
+        .catch((error) => {
+          console.log(error);
+          const err = error.response.data.message;
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         });
-        this.idNum = "";
-        this.password = "";
-        this.$router.push(this.dashRoute);
-      })
-      .catch((error)=>{
-        const err = error.response.data.message;
-        toast.error(err, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      });
     },
     getIDtype(userState) {
       if (userState == "POLICE") {
@@ -61,16 +79,16 @@ export default {
     console.log("this: ", this.userState);
     console.log("store : ", store.state.userState);
     this.getIDtype(this.userState);
-    if(this.userState == "POLICE"){
+    if (this.userState == "POLICE") {
       this.api = "http://localhost:8000/User/PoliceOfficerLogin";
       this.dashRoute = "/policeHome";
-    }else{
+    } else {
       this.api = "http://localhost:8000/User/DriverLogin";
-      this.dashRoute = "/payment";
+      this.dashRoute = "/driverHome";
     }
 
-  console.log("API: ",this.api);
-  console.log("route ",this.dashRoute);
+    console.log("API: ", this.api);
+    console.log("route ", this.dashRoute);
   },
 };
 </script>
@@ -88,7 +106,8 @@ export default {
         </div>
 
         <div>
-          <form @submit.prevent = "submitForm"
+          <form
+            @submit.prevent="submitForm"
             class="text-center flex flex-col justify-center items-center mx-auto mt-16 max-w-xl sm:mt-4"
           >
             <div class>
@@ -142,7 +161,8 @@ export default {
             <div class="mt-0">
               <button
                 type="submit"
-                class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                class="rounded-full bg-ylv px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
                 Sign In
               </button>
             </div>
@@ -164,7 +184,7 @@ export default {
         </div>
         <span class="text-justify text-wt">
           <br />
-          <p text-justify>
+          <p text-justify class="text-wt">
             In the context of the <b>FINEVA</b> app, the driver role pertains to
             individuals who are responsible for transporting goods or providing
             transportation services. As a driver using the <b>FINEVA</b> app,

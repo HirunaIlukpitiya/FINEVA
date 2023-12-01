@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import "vue3-toastify/dist/index.css"; 
 
+store.dispatch('setDriverDetails');
+store.dispatch('setOfficerDetails');
+store.dispatch('setLoggedIn');
+
 const app = createApp(App)
 const user_state = localStorage.getItem("userState");
 store.dispatch("setUserState", user_state);

@@ -1,13 +1,12 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import store from './store';
-
+import { RouterView } from "vue-router";
+import store from "./store";
+import DriverNavBar from "./Components/DriverNavBar.vue";
 </script>
 
 <template>
-<RouterView/>
+  <DriverNavBar />
+  <RouterView />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

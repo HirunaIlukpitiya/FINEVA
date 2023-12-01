@@ -34,7 +34,7 @@ export default {
           itemTitle: "Demo Item",
           currency: CurrencyType.LKR,
           amount: 100,
-          hash: 'CF596A3A5F0DB2A69E889A81BE04D7BB'
+          hash: "CF596A3A5F0DB2A69E889A81BE04D7BB",
         });
         const checkout = new PayhereCheckout(customer, checkoutData);
         checkout.start();

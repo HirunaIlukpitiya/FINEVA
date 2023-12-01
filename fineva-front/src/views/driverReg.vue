@@ -19,7 +19,6 @@ export default {
       NICNumber: "",
       gender: "",
       address: "",
-
     };
   },
   methods: {
@@ -40,18 +39,18 @@ export default {
           Address: this.address,
         })
         .then((response) => {
-          this.$router.push("/signIn")
+          this.$router.push("/signIn");
           console.log(response);
           toast.success("Success!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+            position: toast.POSITION.TOP_CENTER,
+          });
         })
         .catch((error) => {
           console.log(error);
           const err = error.response.data.message;
-        toast.error(err, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         });
     },
   },
@@ -199,10 +198,10 @@ export default {
                       required
                       class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>                  
-                  </select>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </div>
                 </div>
                 <div class>
@@ -213,14 +212,14 @@ export default {
                   >
                   <div class="mt-2.5">
                     <input
-                    type="tel"
+                      type="tel"
                       name=""
                       id=""
                       autocomplete=""
                       v-model="contactNumber"
                       required
                       class="block w-full rounded-full bg-white border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    >                    
+                    />
                   </div>
                 </div>
                 <div class>
@@ -238,16 +237,16 @@ export default {
                       required
                       class="block w-full bg-white rounded-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
-                    <option value="Central">Central</option>
-                    <option value="Eastern">Eastern</option>
-                    <option value="North Central">North Central</option>
-                    <option value="Northern">Northern</option>
-                    <option value="North Western">North Western</option>
-                    <option value="Sabaragamuwa">Sabaragamuwa</option>
-                    <option value="Southern">Southern</option>
-                    <option value="Uva">Uva</option>
-                    <option value="Western">Western</option>                     
-                  </select>
+                      <option value="Central">Central</option>
+                      <option value="Eastern">Eastern</option>
+                      <option value="North Central">North Central</option>
+                      <option value="Northern">Northern</option>
+                      <option value="North Western">North Western</option>
+                      <option value="Sabaragamuwa">Sabaragamuwa</option>
+                      <option value="Southern">Southern</option>
+                      <option value="Uva">Uva</option>
+                      <option value="Western">Western</option>
+                    </select>
                   </div>
                 </div>
                 <div class>
@@ -289,7 +288,7 @@ export default {
                       <option value="Puttalam">Puttalam</option>
                       <option value="Rathnapura">Rathnapura</option>
                       <option value="Trincomalee">Trincomalee</option>
-                      <option value="Vavuniya">Vavuniya</option>                     
+                      <option value="Vavuniya">Vavuniya</option>
                     </select>
                   </div>
                 </div>

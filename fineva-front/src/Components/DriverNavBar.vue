@@ -1,23 +1,38 @@
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-import { watchIgnorable } from "@vueuse/core";
-import store from "../store";
-export default {};
+import store from '../store';
+
+export default {
+    data(){
+        return{
+        userState : "",
+        loggedIn : "",
+        rend:""
+    }   
+    },
+    methods:{
+        userFetch(){
+            this.userState = store.state.userState;
+            this.loggedIn = store.state.loggedIn;
+            if(this.userState == "DRIVER" && this.loggedIn == "DRIVER"){
+              this.rend = true;
+            }
+        }
+    },
+    beforeMount(){
+      this.userFetch();
+    },  
+};
 </script>
 
 <template>
-  <div
-    className="min-h-screen relative bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
-  >
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+       <nav v-if="rend" class="bg-white border-gray-200 dark:bg-gray-900">
       <div
         class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto"
       >
         <span
           class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-900"
-          >FINEVA POLICE</span
-        >
+          >FINEVA DRIVER
+        </span>
 
         <div class="flex items-center md:order-2">
           <button
@@ -45,32 +60,35 @@ export default {};
             class="text-xl flex flex-col font-medium mt-4 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:bg-white"
           >
             <li>
-              <a
-                href="#"
-                class="no-underline py-1 pl-3 pr-4 text-sky-500"
-                aria-current="page"
-                >Driver Search</a
-              >
+              <RouterLink to="/driverHome">
+                <a
+                  href="#"
+                  class="no-underline py-1 pl-3 pr-4 text-sky-500"
+                  aria-current="page"
+                  >Home</a
+                >
+              </RouterLink>
             </li>
             <li>
-              <a
-                href="#"
-                class="no-underline py-1 pl-3 pr-4 md:hover:text-amber-400 md:p-0 dark:text-gray-900 md:dark:hover:text-sky-500"
-                >Profile</a
-              >
+              <RouterLink to="/driverProfile">
+                <a
+                  href="#"
+                  class="no-underline py-1 pl-3 pr-4 md:hover:text-amber-400 md:p-0 dark:text-gray-900 md:dark:hover:text-sky-500"
+                  >Profile</a
+                >
+              </RouterLink>
             </li>
             <li>
+              <RouterLink to="/help">
               <a
                 href="#"
                 class="no-underline py-1 pl-3 pr-4 md:hover:text-amber-400 md:p-0 dark:text-gray-900 md:dark:hover:text-sky-500"
                 >Help</a
               >
+            </RouterLink>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <br />
-  </div>
 </template>
