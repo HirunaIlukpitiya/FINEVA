@@ -3,7 +3,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import { watchIgnorable } from "@vueuse/core";
 import store from "../store";
-export default {};
+export default {
+  
+};
 </script>
 
 <template>

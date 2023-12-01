@@ -3,7 +3,34 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import { watchIgnorable } from "@vueuse/core";
 import store from "../store";
-export default {};
+import axios from "axios";
+export default {
+  data(){
+    return{
+      email:"",
+      firstName:"",
+      lastName:"",
+      contact:"",
+      nic:"",
+      lin:"",
+      address:"",
+      province:"",
+      district:"",
+      gender:""
+    }
+  },
+  methods:{
+    updateProfile(){
+      axios.post("",{
+
+      }).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error);
+      })
+    }
+  },
+};
 </script>
 
 <template>
@@ -32,7 +59,7 @@ export default {};
             </div>
             <div class="row mt-2">
               <div class="col-md-6">
-                <label class="labels">Name</label
+                <label class="labels">First Name</label
                 ><input
                   type="text"
                   class="form-control"
@@ -41,7 +68,7 @@ export default {};
                 />
               </div>
               <div class="col-md-6">
-                <label class="labels">Surname</label
+                <label class="labels">Last Name</label
                 ><input
                   type="text"
                   class="form-control"

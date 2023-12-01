@@ -42,7 +42,7 @@ export default {
       }
     },
     navToFineHistory() {
-      this.$router.push("");
+      this.$router.push("/fineHistory");
     },
   },
   beforeMount() {

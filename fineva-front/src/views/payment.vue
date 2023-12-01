@@ -112,7 +112,5 @@ export default{
 </script>
 
 <template>
-  <button type="submit" id="payhere-payment" >
-    PayHere Pay
-  </button>
+
 </template>

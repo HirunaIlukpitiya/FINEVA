@@ -10,6 +10,7 @@ import "vue3-toastify/dist/index.css";
 store.dispatch('setDriverDetails');
 store.dispatch('setOfficerDetails');
 store.dispatch('setLoggedIn');
+store.dispatch("setHash");
 
 const app = createApp(App)
 const user_state = localStorage.getItem("userState");

@@ -1,11 +1,14 @@
+
 import { createStore } from "vuex";
 
 const store = createStore({
     state:{
         userState: "user",
-        driverDetails: "non",
-        officerDetails: "non",
-        loggedIn:"non",
+        driverDetails: "null",
+        officerDetails: "null",
+        loggedIn:false,
+        value:"null",
+        fine: "null",
     },
     mutations:{
         userState_Change(state, userState){
@@ -22,6 +25,12 @@ const store = createStore({
         loggedIn_Change(state, loggedIn){
             state.loggedIn = loggedIn;
         },
+        Hash_Change(state, value){
+            state.value = value;
+        },
+        fineChange(state,fine){
+            state.fine = fine;
+        }
     },
     actions:{
         setUserState({commit},user_state){
@@ -38,6 +47,12 @@ const store = createStore({
         setLoggedIn({commit}){
             commit("loggedIn_Change",localStorage.getItem("loggedIn"));
         },
+        setHash({commit}){
+            commit("Hash_Change",localStorage.getItem("value"));
+        },
+        setFine({commit},fine){
+            commit("fineChange",fine);
+        }
     },
 })
 

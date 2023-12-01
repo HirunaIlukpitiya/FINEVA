@@ -79,13 +79,13 @@ export default {
               </RouterLink>
             </li>
             <li>
-              <RouterLink to="/help">
+              <div >
               <a
                 href="#"
                 class="no-underline py-1 pl-3 pr-4 md:hover:text-amber-400 md:p-0 dark:text-gray-900 md:dark:hover:text-sky-500"
                 >Help</a
               >
-            </RouterLink>
+            </div>
             </li>
           </ul>
         </div>

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from "../store"
+import Home from '../views/Home.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,12 +8,39 @@ const router = createRouter({
     {
       path:"/",
       name:"Home",
-      component:()=>import('../views/Home.vue')
+      component:Home,
+      beforeEnter: (to, from, next) => {
+        if (store.state.loggedIn == "DRIVER") {
+            console.log(store.state.loggedIn )
+            next({path:"/driverHome",
+        })
+      }
+        else if (store.state.loggedIn == "POLICE") {
+          console.log(store.state.loggedIn )
+          next({path:"/policeHome",
+      })
+        }
+        else{
+            next()
+        }
+    }
     },
     {
       path:"/signIn",
       name:"signIn",
-      component:()=>import('../views/Signin.vue')
+      component:()=>import('../views/Signin.vue'),
+      beforeEnter: (to, from, next) => {
+        if (store.state.loggedIn == "DRIVER") {
+            next({path:"/driverHome",
+        })}
+        if (store.state.loggedIn == "POLICE") {
+          next({path:"/policeHome",
+      })
+        }
+        else{
+            next()
+        }
+    }
     },
     {
       path:"/driverReg",
@@ -28,11 +56,6 @@ const router = createRouter({
       path:"/policeHome",
       name:"policeHome",
       component:()=>import('../views/policeHome.vue'),
-    },
-    {
-      path:"/policeResult",
-      name:"policeResult",
-      component:()=>import('../views/policeResult.vue')
     },
     {
       path:"/policeAddfine",
@@ -59,6 +82,16 @@ const router = createRouter({
       name:"driverProfile",
       component:()=>import("../views/driverProfile.vue")
     },
+    {
+      path:"/fineHistory",
+      name:"fineHistory",
+      component:()=>import("../views/fineHistory.vue")
+    },
+    {
+      path:"/finePay",
+      name:"finePay",
+      component:()=>import("../views/driverFPay.vue")
+    }
   ]
 })
 
