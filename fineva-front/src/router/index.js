@@ -91,7 +91,12 @@ const router = createRouter({
       path:"/finePay",
       name:"finePay",
       component:()=>import("../views/driverFPay.vue")
-    }
+    },
+    {
+      path:"/help",
+      name:"help",
+      component:()=>import("../views/help.vue")
+    },
   ]
 })
 

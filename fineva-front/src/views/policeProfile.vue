@@ -2,7 +2,9 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import { watchIgnorable } from "@vueuse/core";
+import { toast } from "vue3-toastify";
 import store from "../store";
+import Swal from "sweetalert2";
 import axios from "axios";
 export default {
   data() {
@@ -18,23 +20,61 @@ export default {
   },
   methods: {
     updateProfile() {
+      console.log(this.rank,this.station)
       axios
-        .post("", {
+        .post("http://localhost:8000/Police/updateOfficer", {
           RegiNumber: this.regiNumber,
           Rank: this.rank,
           Station: this.station,
         })
         .then((response) => {
           console.log(response);
+          toast.success(response.data.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+
+          axios.post("http://localhost:8000/Police/officerSearch",{
+              RegiNumber:store.state.officerDetails.RegiNumber
+          }).then((response)=>{
+            console.log(response)
+            const officerDetails = JSON.stringify(
+              response.data.officer
+            );
+            localStorage.setItem("Officer", officerDetails);
+            store.dispatch("setOfficerDetails");
+          }).catch((error)=>{
+            console.log(error);
+          })
+          
         })
         .catch((error) => {
           console.log(error);
+          const err = error.response.data.message;
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         });
     },
-    logOut(){
-      localStorage.clear();
-      store.dispatch('setLoggedIn');
-      this.$router.push("/signIn")     
+    logOut(){Swal.fire({
+        title: "Are you sure?",
+        text: "You are going to log out from the system!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            "Logged Out!",
+            "You have successfully logged out!",
+            "success"
+          );
+          localStorage.clear();
+          store.dispatch("setLoggedIn");
+          this.$router.push("/");
+        }
+      });
     },
   },
 };
@@ -148,7 +188,7 @@ export default {
             <button class="btn btn-success profile-button mr-7" type="button" @click="updateProfile()">
               S a v e
             </button>
-            <button class="btn btn-warning profile-button" type="button" @click="logOut()">
+            <button class="btn btn-danger profile-button" type="button" @click="logOut()">
               Log Out
             </button>
             </div>

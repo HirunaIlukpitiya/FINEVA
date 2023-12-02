@@ -40,7 +40,7 @@ export default {
             store.dispatch("setDriverDetails");
             store.dispatch("setLoggedIn");
           }
-          toast.success("Success!", {
+          toast.success("", {
             position: toast.POSITION.TOP_CENTER,
           });
           this.idNum = "";

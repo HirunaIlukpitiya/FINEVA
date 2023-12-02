@@ -34,7 +34,7 @@ export default {
           <span class="text-wt">FINEV</span><span class="text-ylv">A</span>
         </div>
         <span class="text-justify indent-8">
-          <p text-justify>
+          <p text-justify class="text-wt">
             <b>FINEVA</b> is an innovative solution that revolutionizes traffic
             violations and license management. It simplifies the process of
             paying fines and retrieving licenses, saving drivers time and

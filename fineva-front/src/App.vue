@@ -1,8 +1,8 @@
 <script setup>
 import { RouterView } from "vue-router";
 import store from "./store";
-import DriverNavBar from "./Components/DriverNavBar.vue";
-import PoliceNavBar from "./Components/PoliceNavBar.vue";
+import DriverNavBar from "./components/DriverNavBar.vue";
+import PoliceNavBar from "./components/PoliceNavBar.vue";
 </script>
 
 <template>

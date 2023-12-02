@@ -97,7 +97,7 @@ export default{
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline">
-                        <label for="">Customer Name</label>
+                        <label >Customer Name</label>
                         <input
                           type="text"
                           name="nic"
@@ -116,7 +116,7 @@ export default{
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline">
-                        <label for="">Fines</label>
+                        <label>Fines</label>
                         <table class="table table-hover">
         <thead class="table-dark">
           <tr>
@@ -136,7 +136,7 @@ export default{
                   </div>
                   <div class="col-md-6 mb-4 pb-2">
                     <div class="form-outline">
-                      <label for="">Fine ID</label>
+                      <label>Fine ID</label>
                       <input
                         type="text"
                         name="fname"
@@ -152,7 +152,7 @@ export default{
                   </div>
                   <div class="col-md-6 mb-4 pb-2">
                     <div class="form-outline">
-                      <label for="">Fine Amount</label>
+                      <label>Fine Amount</label>
                       <input
                         type="text"
                         name="lname"

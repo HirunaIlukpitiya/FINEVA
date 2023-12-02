@@ -3,32 +3,83 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import { watchIgnorable } from "@vueuse/core";
 import store from "../store";
+import Swal from "sweetalert2";
 import axios from "axios";
+import { toast } from "vue3-toastify";
 export default {
-  data(){
-    return{
-      email:"",
-      firstName:"",
-      lastName:"",
-      contact:"",
-      nic:"",
-      lin:"",
-      address:"",
-      province:"",
-      district:"",
-      gender:""
-    }
+  data() {
+    return {
+      email: store.state.driverDetails.Email,
+      firstName: store.state.driverDetails.Fname,
+      lastName: store.state.driverDetails.Lname,
+      contact: store.state.driverDetails.Contact,
+      nic: store.state.driverDetails.NIC,
+      lin: store.state.driverDetails.LIN,
+      address: store.state.driverDetails.Address,
+      province: store.state.driverDetails.Province,
+      district: store.state.driverDetails.District,
+      gender: store.state.driverDetails.Gender,
+    };
   },
-  methods:{
-    updateProfile(){
-      axios.post("",{
+  methods: {
+    updateProfile() {
+      console.log(this.contact);
+      axios
+        .post("http://localhost:8000/Driver/updateDriver", {
+          LIN : this.lin,
+          Contact : this.contact,
+          Address : this.address,
 
-      }).then((response)=>{
-        console.log(response);
-      }).catch((error)=>{
-        console.log(error);
-      })
-    }
+        })
+        .then((response) => {
+          console.log(response);
+          toast.success(response.data.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          axios.post("http://localhost:8000/Driver/driverSearch",{
+              LIN:store.state.driverDetails.LIN,
+          }).then((response)=>{
+            console.log(response)
+            const driverDetails = JSON.stringify(
+              response.data.driver
+            );
+            localStorage.setItem("Driver", driverDetails);
+            store.dispatch("setDriverDetails");
+          }).catch((error)=>{
+            console.log(error);
+          })
+          
+        })
+        .catch((error) => {
+          console.log(error);
+          const err = error.response.data.message;
+          toast.error(err, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        });
+      },
+    logOut() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You are going to log out from the system!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            "Logged Out!",
+            "You have successfully logged out!",
+            "success"
+          );
+          localStorage.clear();
+          store.dispatch("setLoggedIn");
+          this.$router.push("/");
+        }
+      });
+    },
   },
 };
 </script>
@@ -37,7 +88,7 @@ export default {
   <div
     className=" bg-mblue bg-[url('../../src/assets/image/BG.png')] text-white-50"
   >
-  <br>
+    <br />
     <div class="container rounded bg-white mt-5 mb-5" style="color: black">
       <div class="row">
         <div class="col-md-3 border-right">
@@ -45,11 +96,10 @@ export default {
             class="d-flex flex-column align-items-center text-center p-3 py-5"
           >
             <img
-              class="rounded-circle mt-5"
+              class="rounded-circle mt-50"
               width="150px"
               src="src\assets\image\propic.jpg"
-            /><span class="font-weight-bold">Dinithi Amarasinghe</span
-            ><span class="text-black-50">200080300974</span><span> </span>
+            />
           </div>
         </div>
         <div class="col-md-7 border-right">
@@ -64,7 +114,8 @@ export default {
                   type="text"
                   class="form-control"
                   placeholder="Firstname"
-                  value="Dinithi"
+                  v-model="firstName"
+                  disabled
                 />
               </div>
               <div class="col-md-6">
@@ -72,11 +123,13 @@ export default {
                 ><input
                   type="text"
                   class="form-control"
-                  value="Amarasinghe"
+                  v-model="lastName"
                   placeholder="Surname"
+                  disabled
                 />
               </div>
             </div>
+
             <div class="row mt-3">
               <div class="col-md-12">
                 <label class="labels">Mobile Number</label
@@ -84,40 +137,52 @@ export default {
                   type="text"
                   class="form-control"
                   placeholder="enter phone number"
-                  value="0705326101"
+                  v-model="contact"
                 />
               </div>
-              <br /><br />
-              <br />
               <div class="col-md-12">
-                <label class="labels">Address Line 1</label
+                <label class="labels">E Mail</label
                 ><input
                   type="text"
                   class="form-control"
-                  placeholder="enter address line 1"
-                  value="No 117/2A"
+                  placeholder="email"
+                  v-model="email"
+                  disabled
                 />
               </div>
               <br /><br />
               <br />
               <div class="col-md-12">
-                <label class="labels">Address Line 2</label
+                <label class="labels">Gender</label
                 ><input
                   type="text"
                   class="form-control"
-                  placeholder="enter address line 2"
-                  value="Thummodara Road,Sirisanda, Puwakpitiya"
+                  placeholder="email"
+                  v-model="gender"
+                  disabled
                 />
               </div>
               <br /><br />
               <br />
               <div class="col-md-12">
-                <label class="labels">Postcode</label
+                <label class="labels">Current Address</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  v-model="address"
+                />
+              </div>
+              <br /><br />
+              <br />
+              <div class="col-md-12">
+                <label class="labels">NIC</label
                 ><input
                   type="text"
                   class="form-control"
                   placeholder="enter Post Code"
-                  value="10700"
+                  v-model="nic"
+                  disabled
                 />
               </div>
               <br /><br />
@@ -128,7 +193,8 @@ export default {
                   type="text"
                   class="form-control"
                   placeholder="enter District"
-                  value="Colombo"
+                  v-model="district"
+                  disabled
                 />
               </div>
               <br /><br />
@@ -139,7 +205,8 @@ export default {
                   type="text"
                   class="form-control"
                   placeholder="enter province"
-                  value="Western"
+                  v-model="province"
+                  disabled
                 />
               </div>
               <br /><br />
@@ -150,18 +217,8 @@ export default {
                   type="text"
                   class="form-control"
                   placeholder="enter license number"
-                  value="B5176516"
-                />
-              </div>
-              <br /><br />
-              <br />
-              <div class="col-md-12">
-                <label class="labels">E Mail</label
-                ><input
-                  type="text"
-                  class="form-control"
-                  placeholder="email"
-                  value="dinithikaushalya12173@gmail.com"
+                  v-model="lin"
+                  disabled
                 />
               </div>
               <br /><br />
@@ -169,8 +226,19 @@ export default {
             </div>
 
             <div class="mt-5 text-center">
-              <button class="btn btn-success profile-button" type="button">
+              <button
+                @click="updateProfile()"
+                class="btn btn-success profile-button mr-5"
+                type="button"
+              >
                 Save Profile
+              </button>
+              <button
+                @click="logOut()"
+                class="btn btn-danger profile-button"
+                type="button"
+              >
+                Log Out
               </button>
             </div>
           </div>

@@ -105,7 +105,7 @@ export default {
     <p style="color: gray" id="pp">
       <br />Click here to see the previous fines !
     </p>
-    <button type="submit" name="submit" id="B" @click="navToFineHistory()">
+    <button type="submit" id="B" @click="navToFineHistory()" class=" rounded-lg ">
       Fine History
     </button>
   </div>
