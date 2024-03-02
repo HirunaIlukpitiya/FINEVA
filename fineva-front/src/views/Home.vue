@@ -6,15 +6,15 @@ export default {
     toggleDriver() {
       document.getElementById("driver").src = "../../src/assets/image/d2.png";
       var user_state = "DRIVER";
-      store.dispatch("setUserState", user_state);
       localStorage.setItem("userState", user_state);
+      store.dispatch("setUserState", user_state);
       this.$router.push("signIn");
     },
     togglePolice() {
       document.getElementById("police").src = "../../src/assets/image/p2.png";
       var user_state = "POLICE";
-      store.dispatch("setUserState", user_state);
       localStorage.setItem("userState", user_state);
+      store.dispatch("setUserState", user_state);
       this.$router.push("signIn");
     },
   },

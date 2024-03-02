@@ -65,6 +65,7 @@ export default {
     },
 
     chechValidity() {
+      this.valid = true;
       for (let index = 0; index < this.fines.length; index++) {
         const element = this.fines[index];
         console.log(element);

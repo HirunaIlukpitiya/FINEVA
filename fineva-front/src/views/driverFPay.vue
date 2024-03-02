@@ -51,11 +51,11 @@ export default{
     const payment = {
         "sandbox": true,
         "merchant_id": "1223824",    // Replace your Merchant ID
-        "return_url": "http://localhost:5173/payment",     // Important
-        "cancel_url": "http://localhost:5173/payment",     // Important
-        "notify_url": "http://localhost:5173/payment",
+        "return_url": "http://localhost:5173/finePay",     // Important
+        "cancel_url": "http://localhost:5173/finePay",     // Important
+        "notify_url": "http://localhost:5173/finePay",
         "order_id": store.state.fine.orderID,
-        "items": "Door bell wireles",
+        "items": "",
         "amount": store.state.fine.Amount,
         "currency": "LKR",
         "hash": store.state.value, // *Replace with generated hash retrieved from backend

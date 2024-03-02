@@ -98,7 +98,7 @@ export default {
             <img
               class="rounded-circle mt-50"
               width="150px"
-              src="src\assets\image\propic.jpg"
+              src="src\assets\image\avatar.jpg"
             />
           </div>
         </div>
