@@ -14,7 +14,7 @@ FINEVA is a smart tracking system designed to monitor and track traffic rule vio
 
 ## Installation
 To install and run FINEVA, follow these steps:
-1. Clone the repository: `git clone https://github.com/your-username/FINEVA.git`
+1. Clone the repository: `[git clone https://github.com/your-username/FINEVA.git](https://github.com/HirunaIlukpitiya/FINEVA.git)`
 2. Navigate to the project directory: `cd FINEVA`
 3. Install the dependencies: `npm install`
 4. Configure the database connection in the `.env` file
