@@ -23,16 +23,16 @@ To install and run FINEVA, follow these steps:
 ## Usage
 Once the application is running, you can access it by navigating to `http://localhost:3000` in your web browser. Use the provided login credentials to access the dashboard and monitor traffic violations.
 
-#### Vue Front End
+# Vue Front End
 The front end of FINEVA is built using Vue.js, a popular JavaScript framework for building user interfaces. It provides a responsive and interactive user interface for the application.
 
-### Installation
+## Installation
 To install and run the Vue front end, follow these steps:
 1. Navigate to the front end directory: `cd FINEVA-front`
 2. Install the dependencies: `npm install`
 3. Start the development server: `npm run serve`
 
-### Usage
+## Usage
 Once the development server is running, you can access the Vue front end by navigating to `http://localhost:8080` in your web browser. The front end communicates with the backend API to fetch and display data related to traffic violations.
 
 
